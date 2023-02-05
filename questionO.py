@@ -37,6 +37,9 @@ class question(object):
     def getAnswer(self):
         return self.answer
         
+    def getQType(self):
+        return self.qType
+
     #Initializes object with default fields
     def __init__(self):
         qType = Type.default
