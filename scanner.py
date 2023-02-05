@@ -23,6 +23,9 @@ for i in range(len(qtexts)):
     #add object to list
     questions.append(current)
 
+def getList(self):
+    return questions
+
 # print(questions[2].getQuestion())
 
 
