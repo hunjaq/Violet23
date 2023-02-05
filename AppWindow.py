@@ -11,12 +11,10 @@ import random
 # setup
 root = tk.Tk()
 root.title("prepper")
-# homescreen setup
+root.update()
+# frame setup
 frame = ttk.Frame(root, padding=200)
 frame.grid()
-# discipline/prep setup
-# prep = ttk.Frame(root, padding=200)
-# prep.grid()
 # value storing
 answer = tk.StringVar()
 num_completed = 0
@@ -42,14 +40,15 @@ def intermediate():
     ttk.Label(frame, text=q_answer).grid(column=1, row=1)
     ttk.Button(frame, text="Next", command=basic).grid(column=1, row=3)
     ttk.Button(frame, text="quit", command=quit_practice).grid(column=1, row=4)
+
     
-#quit practice window
+# quit practice window
 def quit_practice():
     # clear window
     clear_frame(frame)
-    #labels
+    # labels
     ttk.Label(frame, text="You completed: " + str(num_completed)).grid(column=1, row=1)
-    #buttons
+    # buttons
     ttk.Button(frame, text="quit to main menu", command=main_title).grid(column=1, row=2)
 
 
@@ -101,7 +100,8 @@ def main_title():
     frame.grid()
     global num_completed
     num_completed = 0
-    ttk.Label(frame, text="Interview Prepper").grid(column=1, row=1)
+    label = ttk.Label(frame, text="Interview Prepper")
+    label.grid(column=1, row=1)
     ttk.Button(frame, text="Begin Prep", command=to_prep).grid(column=1, row=2)
     
 
