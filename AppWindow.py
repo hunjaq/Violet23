@@ -5,7 +5,6 @@ import random
 from Violet23.questionO import question
 import Violet23.scanner as scanner
 from textwrap import wrap
-# playsound('another.mp3') 
 
 # root is instance of tk
 # frame is window
@@ -47,11 +46,11 @@ def intermediate():
     # labels
     ttk.Label(frame, text="your answer: " + str(answer.get()), wraplength=1000).grid(column=1, row=2)
     label = ttk.Label(frame, text=q_answer, wraplength=1000).grid(column=1, row=1)
-    ttk.Label(frame, text="Did you Know? "+facts[i], wraplength=600).grid(column=1,row=3)
+    ttk.Label(frame, text="Did you Know? " + facts[i], wraplength=600).grid(column=1, row=3)
 
     # buttons
     ttk.Button(frame, text="Next", command=basic).grid(column=1, row=4)
-    ttk.Button(frame, text="quit", command=quit_practice).place(x=-200,y=-200)
+    ttk.Button(frame, text="quit", command=quit_practice).place(x=-200, y=-200)
 
     
 # quit practice window
@@ -78,6 +77,8 @@ def basic():
 
     root.update()
     
+ 
+
     # show/establish window updated
     frame.grid()
     
@@ -95,8 +96,11 @@ def basic():
             
     ttk.Label(frame, text=q_string).grid(column=2, row=1)  # print question
     ttk.Button(frame, text="Finished", command=intermediate).grid(column=2, row=3)        
-    ttk.Button(frame, text="quit", command=quit_practice).place(x=-200,y=-200)
+    ttk.Button(frame, text="quit", command=quit_practice).place(x=-200, y=-200)
     
+    # play sound
+    playsound('another.mp3')
+
         
 # update prep selection page
 def to_prep():
