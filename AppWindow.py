@@ -11,65 +11,99 @@ import random
 # setup
 root = tk.Tk()
 root.title("prepper")
-#homescreen setup
-home = ttk.Frame(root, padding=200)
-home.grid()
-#discipline/prep setup
-prep = ttk.Frame(root, padding=200)
-prep.grid()
+# homescreen setup
+frame = ttk.Frame(root, padding=200)
+frame.grid()
+# discipline/prep setup
+# prep = ttk.Frame(root, padding=200)
+# prep.grid()
+# value storing
+answer = tk.StringVar()
+num_completed = 0
 
-#helper clear function
+
+# helper clear function
 def clear_frame(frame):
     for widgets in frame.winfo_children():
         widgets.destroy()
 
+
+# takes question object
+def intermediate():
+    # clear window
+    clear_frame(frame)
+    
+    # setup
+    global num_completed
+    num_completed = num_completed + 1
+    # q_answer = question.answer()
+    q_answer = "balls, actually"
+    ttk.Label(frame, text="your answer: " + str(answer.get())).grid(column=1, row=2)
+    ttk.Label(frame, text=q_answer).grid(column=1, row=1)
+    ttk.Button(frame, text="Next", command=basic).grid(column=1, row=3)
+    ttk.Button(frame, text="quit", command=quit_practice).grid(column=1, row=4)
+    
+#quit practice window
+def quit_practice():
+    # clear window
+    clear_frame(frame)
+    #labels
+    ttk.Label(frame, text="You completed: " + str(num_completed)).grid(column=1, row=1)
+    #buttons
+    ttk.Button(frame, text="quit to main menu", command=main_title).grid(column=1, row=2)
+
+
     # prep question screen
     # takes question object
-def basic(*args):
+def basic():
     # clean window
-    clear_frame(prep)
+    clear_frame(frame)
     # q_type = question.type() #string
     # q_string = question.question() #string
+    # q_answer = question.answer() #string
     q_string = "question?"
     q_type = "open ended"
+    
     answer_bank = ["wrong", "wrong2", "wrong3"]
     root.update()
     
-    
     # show/establish window updated
-    prep.grid()
-    # get question to show
-    # present input box or multiple choice
-    answer = ""
-    if (q_type == "open ended"):
-        print("open")
-        ttk.Entry(prep, width=100, textvariable=answer).grid(column=1,row=2)
+    frame.grid()
     
+    # check which type
+    if (q_type == "open ended"):
+        answer_box = ttk.Entry(frame, width=100, textvariable=answer)
+        answer_box.delete(0, 999)
+        answer_box.grid(column=1, row=2)
     else:
         print("multiple")
         answers = []
         answers.add("correct")  # placeholder for question
         for x in range(3):
             random.randrange(answer_bank.size())
-    ttk.Label(prep, text=q_string).grid(column=1,row=1)
-    ttk.Button(prep, text="Finished").grid(column=1, row=3)        
-    # if quit button pressed
+            
+    ttk.Label(frame, text=q_string).grid(column=2, row=1)
+    ttk.Button(frame, text="Finished", command=intermediate).grid(column=2, row=3)        
+    ttk.Button(frame, text="quit", command=quit_practice).grid(column=1, row=1)
     
-    # if next question pressed
-        
         
 # update prep selection page
-def to_prep(*args):
-    root.update()
-    home.grid_remove()
-    
-    discipline_title = ttk.Label(prep, text="Which discipline?").grid(column=1, row=1)
-    ttk.Button(prep, text="basic", command=basic).grid(column=1, row=2)
+def to_prep():
+    clear_frame(frame)
+    ttk.Label(frame, text="Which discipline?").grid(column=1, row=1)
+    ttk.Button(frame, text="basic", command=basic).grid(column=1, row=2)
     root.mainloop()
     
 
 # main page
-title = ttk.Label(home, text="Interview Prepper").grid(column=1, row=1)
-begin = ttk.Button(home, text="Begin Prep", command=to_prep).grid(column=1, row=2)
+def main_title():
+    clear_frame(frame)
+    frame.grid()
+    global num_completed
+    num_completed = 0
+    ttk.Label(frame, text="Interview Prepper").grid(column=1, row=1)
+    ttk.Button(frame, text="Begin Prep", command=to_prep).grid(column=1, row=2)
+    
 
+main_title()
 root.mainloop()
