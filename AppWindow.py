@@ -1,10 +1,8 @@
 import tkinter as tk
 from tkinter import ttk
 import random
-#from Violet23.questionO import question
-#import Violet23.scanner as scanner
-import questionO
-import scanner
+from Violet23.questionO import question
+import Violet23.scanner as scanner
 from textwrap import wrap
 
 # root is instance of tk
@@ -17,7 +15,8 @@ from textwrap import wrap
 root = tk.Tk()
 root.title("prepper")
 root.update()
-list = scanner.getList(list)
+questions = scanner.getList(list)
+facts = scanner.getFacts(list)
 # frame setup
 frame = ttk.Frame(root, padding=200)
 frame.grid()
@@ -41,13 +40,15 @@ def intermediate():
     global num_completed
     num_completed = num_completed + 1
     q_answer = question.getAnswer()
+    i = random.randrange(len(facts))
     
     # labels
     ttk.Label(frame, text="your answer: " + str(answer.get()), wraplength=1000).grid(column=1, row=2)
     label = ttk.Label(frame, text=q_answer, wraplength=1000).grid(column=1, row=1)
+    ttk.Label(frame, text="Did you Know? "+facts[i], wraplength=600).grid(column=1,row=3)
 
     # buttons
-    ttk.Button(frame, text="Next", command=basic).grid(column=1, row=3)
+    ttk.Button(frame, text="Next", command=basic).grid(column=2, row=4)
     ttk.Button(frame, text="quit", command=quit_practice).grid(column=1, row=4)
 
     
@@ -67,9 +68,9 @@ def basic():
     # clean window
     clear_frame(frame)
     
-    i = random.randrange(list.__len__())
+    i = random.randrange(len(questions))
     global question
-    question = list[i]
+    question = questions[i]
     q_type = question.getQType()  # string
     q_string = question.getQuestion()  # string
 
