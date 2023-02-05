@@ -3,6 +3,7 @@ from tkinter import ttk
 import random
 from Violet23.questionO import question
 import Violet23.scanner as scanner
+from textwrap import wrap
 
 # root is instance of tk
 # frame is window
@@ -39,11 +40,11 @@ def intermediate():
     num_completed = num_completed + 1
     q_answer = question.getAnswer()
     
-    #labels
-    ttk.Label(frame, text="your answer: " + str(answer.get())).grid(column=1, row=2)
-    ttk.Label(frame, text=q_answer).grid(column=1, row=1)
-    ttk.Label(frame, text="")
-    #buttons
+    # labels
+    ttk.Label(frame, text="your answer: " + str(answer.get()), wraplength=1000).grid(column=1, row=2)
+    label = ttk.Label(frame, text=q_answer, wraplength=1000).grid(column=1, row=1)
+
+    # buttons
     ttk.Button(frame, text="Next", command=basic).grid(column=1, row=3)
     ttk.Button(frame, text="quit", command=quit_practice).grid(column=1, row=4)
 
@@ -67,10 +68,8 @@ def basic():
     i = random.randrange(list.__len__())
     global question
     question = list[i]
-    q_type = question.getQType() #string
-    q_string = question.getQuestion() #string
-    
-    
+    q_type = question.getQType()  # string
+    q_string = question.getQuestion()  # string
 
     root.update()
     
@@ -78,18 +77,18 @@ def basic():
     frame.grid()
     
     # check which type
-    if (q_type == 2): #free response
+    if (q_type == 2):  # free response
         answer_box = ttk.Entry(frame, width=50, textvariable=answer)
         answer_box.delete(0, 999)
         answer_box.grid(column=2, row=2)
-    elif (q_type == 1): #multiple choice
+    elif (q_type == 1):  # multiple choice
         print("multiple")
         answers = []
         answers.add("correct")  # placeholder for question
         for x in range(3):
             random.randrange(answer_bank.size())
             
-    ttk.Label(frame, text=q_string).grid(column=2, row=1)#print question
+    ttk.Label(frame, text=q_string).grid(column=2, row=1)  # print question
     ttk.Button(frame, text="Finished", command=intermediate).grid(column=2, row=3)        
     ttk.Button(frame, text="quit", command=quit_practice).grid(column=1, row=1)
     
