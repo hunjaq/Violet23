@@ -1,9 +1,11 @@
 import tkinter as tk
 from tkinter import ttk
+from playsound import playsound
 import random
 from Violet23.questionO import question
 import Violet23.scanner as scanner
 from textwrap import wrap
+# playsound('another.mp3') 
 
 # root is instance of tk
 # frame is window
