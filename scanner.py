@@ -20,6 +20,6 @@ for i in range(len(qtexts)):
     current.setType("fr")
     questions.append(current)
 
-print(questions[2].getQuestion())
+# print(questions[2].getQuestion())
 
 
