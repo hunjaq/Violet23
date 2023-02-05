@@ -1,6 +1,8 @@
 import tkinter as tk
 from tkinter import ttk
 import random
+from Violet23.questionO import question
+import Violet23.scanner
 
 # root is instance of tk
 # frame is window
@@ -12,6 +14,8 @@ import random
 root = tk.Tk()
 root.title("prepper")
 root.update()
+q = question()
+
 # frame setup
 frame = ttk.Frame(root, padding=200)
 frame.grid()
@@ -34,10 +38,13 @@ def intermediate():
     # setup
     global num_completed
     num_completed = num_completed + 1
-    # q_answer = question.answer()
-    q_answer = "balls, actually"
+    q_answer = question.getAnswer(q)
+    
+    #labels
     ttk.Label(frame, text="your answer: " + str(answer.get())).grid(column=1, row=2)
     ttk.Label(frame, text=q_answer).grid(column=1, row=1)
+    ttk.Label(frame, text="")
+    #buttons
     ttk.Button(frame, text="Next", command=basic).grid(column=1, row=3)
     ttk.Button(frame, text="quit", command=quit_practice).grid(column=1, row=4)
 
@@ -57,11 +64,9 @@ def quit_practice():
 def basic():
     # clean window
     clear_frame(frame)
-    # q_type = question.type() #string
-    # q_string = question.question() #string
-    # q_answer = question.answer() #string
-    q_string = "question?"
-    q_type = "open ended"
+    q_type = question.getQType(q) #string
+    q_string = question.getQuestion(q) #string
+    
     
     answer_bank = ["wrong", "wrong2", "wrong3"]
     root.update()
@@ -70,18 +75,18 @@ def basic():
     frame.grid()
     
     # check which type
-    if (q_type == "open ended"):
-        answer_box = ttk.Entry(frame, width=100, textvariable=answer)
+    if (q_type == 2): #free response
+        answer_box = ttk.Entry(frame, width=50, textvariable=answer)
         answer_box.delete(0, 999)
-        answer_box.grid(column=1, row=2)
-    else:
+        answer_box.grid(column=2, row=2)
+    elif (q_type == 1): #multiple choice
         print("multiple")
         answers = []
         answers.add("correct")  # placeholder for question
         for x in range(3):
             random.randrange(answer_bank.size())
             
-    ttk.Label(frame, text=q_string).grid(column=2, row=1)
+    ttk.Label(frame, text=q_string).grid(column=2, row=1)#print question
     ttk.Button(frame, text="Finished", command=intermediate).grid(column=2, row=3)        
     ttk.Button(frame, text="quit", command=quit_practice).grid(column=1, row=1)
     

@@ -1,4 +1,4 @@
-import questionO
+from Violet23.questionO import question
 
 questions = []
 qtexts = []
@@ -14,10 +14,13 @@ with open("answers.txt", errors="ignore") as g:
         answers.append(line2.strip())
 
 for i in range(len(qtexts)):
-    current = questionO.question()
+    #make current a question object, default
+    current = question()
+    #set values of current correctly
     current.setQuestion(qtexts[i])
     current.setAnswer(answers[i])
     current.setType("fr")
+    #add object to list
     questions.append(current)
 
 # print(questions[2].getQuestion())

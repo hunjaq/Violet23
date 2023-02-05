@@ -7,27 +7,32 @@ Created on Feb 4, 2023
 from enum import Enum
 import string
 
-#Enum to account for types of questions
-class Type(Enum):
-    default = 0 #placeholder
-    mc = 1 #multiple choice
-    fr = 2 #free response
 
-#Question object, has 3 fields
+# Enum to account for types of questions
+class Type(Enum):
+    default = 0  # placeholder
+    mc = 1  # multiple choice
+    fr = 2  # free response
+
+
+# Question object, has 3 fields
 class question(object):
-    
-    #sets the question type
+    qType = 0
+    answer = ""
+    question = ""
+
+    # sets the question type
     def setType(self, qType: string):
-        if (qType == 'mc'): #sets enum to mc
+        if (qType == 'mc'):  # sets enum to mc
             self.qType = Type.mc
-        else: # sets enum to fr
+        else:  # sets enum to fr
             self.qType = Type.fr
         
-    #Sets the question
+    # Sets the question
     def setQuestion(self, question: string):
         self.question = question
         
-    #Sets the answer
+    # Sets the answer
     def setAnswer(self, answer: string):
         self.answer = answer
 
@@ -40,8 +45,8 @@ class question(object):
     def getQType(self):
         return self.qType
 
-    #Initializes object with default fields
+    # Initializes object with default fields
     def __init__(self):
-        qType = Type.default
-        question = ''
-        answer = ''
+        self.qType = 0
+        self.question = ''
+        self.answer = ''
