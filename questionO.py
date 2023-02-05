@@ -30,6 +30,12 @@ class question(object):
     #Sets the answer
     def setAnswer(self, answer: string):
         self.answer = answer
+
+    def getQuestion(self):
+        return self.question
+    
+    def getAnswer(self):
+        return self.answer
         
     #Initializes object with default fields
     def __init__(self):

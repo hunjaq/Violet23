@@ -1,3 +1,5 @@
+import questionO
+
 questions = []
 qtexts = []
 answers = []
@@ -12,10 +14,12 @@ with open("answers.txt", errors="ignore") as g:
         answers.append(line2.strip())
 
 for i in range(len(qtexts)):
-    questions[i] = question(self)
-    questions[i].setQuestion(qtexts[i])
-    questions[i].setAnswer(answers[i])
+    current = questionO.question()
+    current.setQuestion(qtexts[i])
+    current.setAnswer(answers[i])
+    current.setType("fr")
+    questions.append(current)
 
-print(questions)
+print(questions[2].getQuestion())
 
 
