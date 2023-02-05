@@ -20,6 +20,9 @@ for i in range(len(qtexts)):
     current.setType("fr")
     questions.append(current)
 
+def getList(self):
+    return questions
+
 # print(questions[2].getQuestion())
 
 
