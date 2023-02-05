@@ -1,8 +1,10 @@
 import tkinter as tk
 from tkinter import ttk
 import random
-from Violet23.questionO import question
-import Violet23.scanner as scanner
+#from Violet23.questionO import question
+#import Violet23.scanner as scanner
+import questionO
+import scanner
 from textwrap import wrap
 
 # root is instance of tk
