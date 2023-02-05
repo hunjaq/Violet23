@@ -24,9 +24,9 @@ class question(object):
     # sets the question type
     def setType(self, qType: string):
         if (qType == 'mc'):  # sets enum to mc
-            self.qType = Type.mc
+            self.qType = 1
         else:  # sets enum to fr
-            self.qType = Type.fr
+            self.qType = 2
         
     # Sets the question
     def setQuestion(self, question: string):

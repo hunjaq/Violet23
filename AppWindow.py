@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 import random
 from Violet23.questionO import question
-import Violet23.scanner
+import Violet23.scanner as scanner
 
 # root is instance of tk
 # frame is window
@@ -14,8 +14,7 @@ import Violet23.scanner
 root = tk.Tk()
 root.title("prepper")
 root.update()
-q = question()
-
+list = scanner.getList(list)
 # frame setup
 frame = ttk.Frame(root, padding=200)
 frame.grid()
@@ -38,7 +37,7 @@ def intermediate():
     # setup
     global num_completed
     num_completed = num_completed + 1
-    q_answer = question.getAnswer(q)
+    q_answer = question.getAnswer()
     
     #labels
     ttk.Label(frame, text="your answer: " + str(answer.get())).grid(column=1, row=2)
@@ -64,11 +63,15 @@ def quit_practice():
 def basic():
     # clean window
     clear_frame(frame)
-    q_type = question.getQType(q) #string
-    q_string = question.getQuestion(q) #string
+    
+    i = random.randrange(list.__len__())
+    global question
+    question = list[i]
+    q_type = question.getQType() #string
+    q_string = question.getQuestion() #string
     
     
-    answer_bank = ["wrong", "wrong2", "wrong3"]
+
     root.update()
     
     # show/establish window updated
